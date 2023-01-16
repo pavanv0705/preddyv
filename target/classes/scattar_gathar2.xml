@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="df2ca4d3-29e8-4601-8540-9e8f0a6333a6" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="scattar_gathar2Flow" doc:id="e9b043dc-6695-4628-afb0-5d5a599b5f9f" >
+		<http:listener doc:name="Listener" doc:id="55154fa7-ed75-4810-9de3-4a9d62a3acb9" config-ref="HTTP_Listener_config" path="/debug"/>
+		<logger level="INFO" doc:name="Logger" doc:id="f3be4df6-9a71-4802-b24a-0da9c618cb6b" message="---before Payload---"/>
+		<set-payload value="hi my name is pavan" doc:name="Set Payload" doc:id="427134dc-ae9d-431d-8ef2-0f51d19c54c4" />
+		<logger level="INFO" doc:name="Logger" doc:id="d773d6a6-5dd5-4e72-9b2e-2c73f86d796f" message="---After payload---"/>
+		<logger level="DEBUG" doc:name="Logger" doc:id="9035c043-6a96-4fea-82ee-44e234962600" message='#[payload ++ "after payload1"]'/>
+	</flow>
+</mule>
